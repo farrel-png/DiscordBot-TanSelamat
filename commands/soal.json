@@ -1,0 +1,12 @@
+{
+   "pertanyaan":[
+      {
+         "no":1,
+         "soal":"Apakah Anda seorang petugas kesehatan?"
+      },
+      {
+         "no":2,
+         "soal":"Apakah Anda memiliki riwayat mengidap penyakit di bawah ini?\n\na. Diabetes\n  b. Penyakit Jantung\n  c. Hipertensi\n  d. Keganasan\n  e. Gangguan Imunologi\n  f. Penyakit Ginjal Kronis\n  g. PPOK\n  H. Asma"
+      }
+   ]
+}
