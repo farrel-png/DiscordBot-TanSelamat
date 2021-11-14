@@ -26,12 +26,8 @@ const help =async (message,arguments)=>{
         title:"Perintah yang disediakan TanSelamat",
         fields:[
             {name :'Help', value:'`cov help`\n Memperlihatkan Perintah yang tersedia',inline : true},
-            // {name :'Invite', value:'`cov invite`\n get bot on your own server',inline : true},
             {name :'All', value:'`cov all`\n Memperlihatkan status Covid secara keseluruhan',inline : true},
             {name :'Country', value:'`cov country {country}`\n Memperlihatkan status covid berdasarkan negara',inline : true},
-            // {name :'Graph', value:'`cov graph {country|all} [log|linear]`\n shows a details graph with cases deaths and recovery rate',inline : true},
-            // {name :'Overview', value:'`cov overview {country|all}`\n shows overview chart with active, deaths and recovered',inline : true},
-            // {name :'State', value:'`cov state {state}`\n show detailed covid stats for a US state',inline : true},
             {name :'rankings', value:'`cov ranks`\n Memperlihatkan urutan negara dengann status covid tertinggi',inline : true},
             {name :'Country Compare', value:'`cov compare {country} {country}`\n Membandingkan status covid pada 2 negara',inline : true},
             {name: 'Reminnder', value: '`cov remind {time} {reason}`\n Give a reminder with a reason', inline: true},
@@ -67,8 +63,7 @@ async function all(message){
             {name :'Recovery Rate', value:`${(data.recovered/data.active*100).toFixed(3)}%`,inline : true},
             {name :'Test Rate', value:`${(data.testsPerOneMillion/10000).toFixed(3)}%`,inline : true},
             {name :'infected countries', value:data.affectedCountries ,inline : true},
-        ],
-        // url :'https://github.com/theStonedSage' 
+        ], 
     })
     await message.channel.send(embed);
 }
@@ -118,7 +113,6 @@ async function diagnose(message, args){
     }      
     
 }
-//country
 async function country(message,args){
 
     if(args.length<1) return await message.channel.send("give some country name"); 
@@ -198,7 +192,6 @@ async function ranks(message,args){
         description : "this is the help section",
         title:"Top 15 countries sorted by cases",
         fields:countrylist,
-        // url :'https://github.com/theStonedSage' 
     })
     await message.channel.send(embed);
 }
@@ -235,7 +228,6 @@ async function compare(message,args){
       { name: 'Recovery Rate', value: `**${data[0].country}**: ${(data[0].recovered/data[0].cases*100).toFixed(4)} %\n**${data[1].country}**: ${(data[1].recovered/data[1].cases*100).toFixed(4)} %`, inline: true },
       { name: 'Test Rate', value: `**${data[0].country}**: ${(data[0].testsPerOneMillion/10000).toFixed(4)} %\n**${data[1].country}**: ${(data[1].testsPerOneMillion/10000).toFixed(4)} %`, inline: true },
     ],
-    // url: 'https://github.com/theStonedSage'
   })
   await message.channel.send(embed)
 
@@ -260,96 +252,6 @@ const config = ChartJS=>{
         }
     })
 }
-
-//config done
-
-// const lineRenderer = new CanvasRenderService({1200,600});
-// const pieRenderer = new CanvasRenderService({750,600});
-
-// async function graph(message,args){
-//     if(args.length<1) return await message.channel.send("specify a country name");
-//     const lineData = ['global', 'all'].includes(args[0].toLowerCase()) ? {timeline: await api.historical.all({days: -1})} : await api.historical.countries({ country: args[0], days: -1 })
-//     const datasets = [{
-//         label : "cases",
-//         borderColor: '#ffffff',
-//         pointBackgroundColor : '#ffffff',
-//         pointRadius : 2,
-//         pointWidth: 3,
-//         data: Object.values(lineData.timeline.cases),
-//     },
-//     {
-//         label : "deaths",
-//         borderColor: '#e14594',
-//         pointBackgroundColor : '#e14594',
-//         pointRadius : 2,
-//         pointWidth: 3,
-//         data: Object.values(lineData.timeline.deaths),
-//     },
-//     {
-//         label : "Active",
-//         borderColor: '#a7d129',
-//         pointBackgroundColor : '#a7d129',
-//         pointRadius : 2,
-//         pointWidth: 3,
-//         data: Object.keys(lineData.timeline.cases).map(key=>lineData.timeline.cases[key]-lineData.timeline.recovered[key] - lineData.timeline.deaths[key]),
-//     },
-//     ]
-
-//     const buffer = await lineRenderer.renderToBuffer({
-//         type:'line',
-//         data: {
-//             labels:Object.keys(lineData.timeline.cases),
-//             datasets: datasets.filter(d=>d.data.filter(x=>x).length),
-//         },
-//         options : {
-//             scales : {
-//                 xAxes :[{
-//                     display:true,
-//                     tricks:{
-//                         fontSize:18,
-//                         callback: (label)=> moment(label,'M/D/YY').format('DD MMM'),
-//                         padding : 10 
-//                     },
-//                     gridlines: {
-//                         zeroLineColor: '#fff',
-//                         zeroLineWidth: 2
-//                     }
-//                 }],
-//                 yAxes :[{
-//                     display:true,
-//                     type : args[args.length-1]==='log'?'logarithmic':'linear',
-//                     tricks:{
-//                         fontSize:18,
-//                     },
-//                     gridlines: {
-//                         zeroLineColor: '#fff',
-//                         zeroLineWidth: 2
-//                     }
-//                 }]
-//             },
-//             legend: {
-//                 display: true,
-//                 labels:{
-//                     usePointStyle : true,
-//                     padding: 40,
-//                     fontSize: 30,
-//                 }
-//             }
-//         } 
-//     })
-
-//     const embed = newEmbed({
-//         color: '#303136',
-//         author:{name : "Covid stats", url: 'https://cdn.discordapp.com/icons/707227171835609108/f308f34a45ac7644506fb628215a3793.png?size=128' },
-//         title : `${lineData.country||'Global'} Timeline`,
-//         description: 'data is provided by the novelCovid api',
-//         files: [new Discord.MessageAttachment(buffer,'graph.png')],
-//         image: 'attachment://graph.png',
-//         url :'https://github.com/theStonedSage' 
-//     })
-
-//     await message.channel.send(embed);
-// }
 
 async function overview(message,args){
     if(args.length<1) return await message.channel.send("specify a country name");
@@ -382,7 +284,6 @@ async function overview(message,args){
         title: `${pieData.country||'Global'} Overview`,
         files: [new Discord.MessageAttachment(buffer,'graph.png')],
         image: 'attachment://graph.png',
-        // url :'https://github.com/theStonedSage',
     })
 
     await message.channel.send(embed);
@@ -395,16 +296,10 @@ module.exports = {
     a:all,
     country,
     c: country,
-    // state,
-    // s: state,
     ranks,
     r:ranks,
     compare,
     comp : compare,
-    // graph,
-    // g : graph,
-    // overview,
-    // o: overview,
     remind,
     r: remind,
     diagnose,
