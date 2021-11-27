@@ -11,6 +11,30 @@
       {
          "no":3,
          "soal":"Apakah Anda memiliki  riwayat penyakit kardiovaskular, seperti stroke dan penyakit jantung?"
+      },
+      {
+         "no":4,
+         "soal":"Apakah Anda memiliki  riwayat penyakit diabetes?"
+      },
+      {
+         "no":5,
+         "soal":"Apakah Anda memiliki riwayat asma, pneumonia dan gagal napas?"
+      },
+      {
+         "no":6,
+         "soal":"Apakah Anda mengalami gejala demam?"
+      },
+      {
+         "no":7,
+         "soal":"Apakah Anda mengalami gejala batuk?"
+      },
+      {
+         "no":8,
+         "soal":"Apakah Anda mengalami sakit kepala?"
+      },
+      {
+         "no":9,
+         "soal":"Apakah Anda sedang mengalami sesak nafas?"
       }
       
       

@@ -128,7 +128,7 @@ async function diagnose(message, args){
             message.author.send(embed).then(() => {
                 message.channel.awaitMessages(filter, {
                     max: 1,
-                    time: 5000,
+                    time: 10000,
                     errors: ['time']
                   })
                   .then(message => {
@@ -164,7 +164,7 @@ async function diagnose(message, args){
         }
         
 
-        await timer(6000);
+        await timer(11000);
     }
     
     collector.stop();
@@ -178,27 +178,42 @@ function rule1(message, input){
     console.log(input.length);
     var hasil = 0.0;
     for(var j = 0; j<input.length; j++){
-        if (j = 0){
+        if (j == 0){
             hasil = input[j] * 0.8;
-            console.log(input[j]);
-            console.log(hasil);
-        } else if(j = 1){
+            console.log("masuk j = 0");
+            continue;
+        } else if(j == 1){
             hasil = hasil + (input[j] * 0.4) * (1-hasil);
-            console.log(hasil);
-        } else if(j = 2){
-            hasil = hasil + (input[j] * 0.4) * (1-hasil)
-        } else if(j = 3){
-            hasil = hasil + (input[j] * 0.6) * (1-hasil)
-        } else if(j = 4){
-            hasil = hasil + (input[j] * 0.0) * (1-hasil)
-        } else if(j = 5){
-            hasi = hasil + (input[j] * 1) * (1-hasil)
-        } else if(j = 6){
-            hasil = hasil + (input[j] * 0.4) * (1-hasil)
-        } else if(j = 7){
-            hasil = hasil + (input[j] * 0.8) * (1-hasil)
+            console.log("masuk j = 1");
+            continue;
+        } else if(j == 2){
+            hasil = hasil + (input[j] * 0.4) * (1-hasil);
+            console.log("masuk j = 2");
+            continue;
+        } else if(j == 3){
+            hasil = hasil + (input[j] * 0.6) * (1-hasil);
+            console.log("masuk j = 3");
+            continue;
+        } else if(j == 4){
+            hasil = hasil + (input[j] * 0.0) * (1-hasil);
+            console.log("masuk j = 4");
+            continue;
+        } else if(j == 5){
+            hasi = hasil + (input[j] * 1) * (1-hasil);
+            console.log("masuk j = 5");
+            continue;
+        } else if(j == 6){
+            hasil = hasil + (input[j] * 0.4) * (1-hasil);
+            console.log("masuk j = 6");
+            continue;
+        } else if(j == 7){
+            hasil = hasil + (input[j] * 0.8) * (1-hasil);
+            console.log("masuk j = 7");
+            continue;
         } else {
-            hasil = hasil + (input[j] * 0.4) * (1-hasil)
+            hasil = hasil + (input[j] * 0.4) * (1-hasil);
+            console.log("masuk j = 8");
+            break;
         } 
     }
     console.log("Tembus yak");
