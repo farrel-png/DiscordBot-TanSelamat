@@ -2,11 +2,17 @@
    "pertanyaan":[
       {
          "no":1,
-         "soal":"Apakah Anda seorang petugas kesehatan?"
+         "soal":"Sejak 14 hari yang lalu, apakah Anda memiliki kontak erat dengan kasus konfirmasi COVID-19?"
       },
       {
          "no":2,
-         "soal":"Apakah Anda memiliki riwayat mengidap penyakit di bawah ini?\n\na. Diabetes\n  b. Penyakit Jantung\n  c. Hipertensi\n  d. Keganasan\n  e. Gangguan Imunologi\n  f. Penyakit Ginjal Kronis\n  g. PPOK\n  H. Asma"
+         "soal":"Sejak 14 hari yang lalu, apakah Anda keluar rumah dengan tidak mengenakan masker?"
+      },
+      {
+         "no":3,
+         "soal":"Apakah Anda memiliki  riwayat penyakit kardiovaskular, seperti stroke dan penyakit jantung?"
       }
+      
+      
    ]
 }

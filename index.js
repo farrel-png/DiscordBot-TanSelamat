@@ -18,6 +18,6 @@ client.on('message',message=>{
       com[parsed.command](message,parsed.arguments);
       console.log(parsed.arguments);
   }
-})
+});
 
 client.login(config.BOT_TOKEN);

@@ -96,23 +96,122 @@ async function remind(message, args){
 
 async function diagnose(message, args){
     const data = abis.pertanyaan;
+    var input=[];
+    var stop = 0;
     const timer = ms => new Promise(res => setTimeout(res, ms))
+    const filter =(m) => m.author.id === message.author.id;
+    const collector = new Discord.MessageCollector(message.channel, filter);
     console.log(data)
+
+    collector.on("collect", (msg)=> {
+        console.log(msg.content);
+    });
+
+    collector.on('end', collected => {
+        console.log(`Collected ${collected.size} items`);
+    });
+
+    for(var i = 0; i<data.length; i++){
+        if(stop == 1){
+            break;
+        } else {
+            const embed = newEmbed({
+                color:'#dc3147',
+                author:{name : "TanSelamat", url: 'https://cdn.discordapp.com/attachments/878248882432262197/899666335200583710/tanSelamat1.png?size=600' },
+                description : `Jawablah pertanyaan di bawah ini dengan Tidak, Tidak tahu, Mungkin, Kemungkinan besar, Iya `,
+                title:`Diagnosa Mandiri`,
+                fields:[
+                    {name :`Pertanyaan ${data[i].no}`, value:`${data[i].soal}`,inline : true}
+                ]
+            })
     
+            message.author.send(embed).then(() => {
+                message.channel.awaitMessages(filter, {
+                    max: 1,
+                    time: 5000,
+                    errors: ['time']
+                  })
+                  .then(message => {
+                    message = message.first()
+                    if (message.content.toUpperCase() == 'IYA' || message.content.toUpperCase() == 'Y') {
+                        message.channel.send(`Sebelumnya Anda menjawab iya`);
+                        input.push(Number(1.0));
+                    } else if (message.content.toUpperCase() == 'HAMPIR PASTI' || message.content.toUpperCase() == 'HP') {
+                        message.channel.send(`Sebelumnya Anda menjawab hampir pasti`);
+                        input.push(Number(0.8));
+                    } else if (message.content.toUpperCase() == 'KEMUNGKINAN BESAR' || message.content.toUpperCase() == 'KB') {
+                        message.channel.send(`Sebelumnya Anda menjawab kemungkinan besar`);
+                        input.push(Number(0.6));
+                    } else if (message.content.toUpperCase() == 'MUNGKIN' || message.content.toUpperCase() == 'M') {
+                        message.channel.send(`Sebelumnya Anda menjawab mungkin`);
+                        input.push(Number(0.4));
+                    } else if (message.content.toUpperCase() == 'TIDAK TAHU' || message.content.toUpperCase() == 'TT') {
+                        message.channel.send(`Sebelumnya Anda menjawab tidak tahu`);
+                        input.push(Number(0.2));
+                    } else if (message.content.toUpperCase() == 'TIDAK' || message.content.toUpperCase() == 'T') {
+                        message.channel.send(`Sebelumnya Anda menjawab tidak`);
+                        input.push(Number(0.0));
+                    } else {
+                        message.channel.send(`Masukan yang diberikan salah, mohon baca keterangan menjawab`);
+                        stop = 1;
+                    }
+                  })
+                  .catch(collected => {
+                      message.channel.send('Timeout');
+                      stop = 1;
+                  });
+              });
+        }
+        
+
+        await timer(6000);
+    }
+    
+    collector.stop();
+    console.log(input);
+    rule1(message, input);
+}
+
+function rule1(message, input){
+    console.log('masuk kesini');
+    console.log(input[0]);
+    console.log(input.length);
+    var hasil = 0.0;
+    for(var j = 0; j<input.length; j++){
+        if (j = 0){
+            hasil = input[j] * 0.8;
+            console.log(input[j]);
+            console.log(hasil);
+        } else if(j = 1){
+            hasil = hasil + (input[j] * 0.4) * (1-hasil);
+            console.log(hasil);
+        } else if(j = 2){
+            hasil = hasil + (input[j] * 0.4) * (1-hasil)
+        } else if(j = 3){
+            hasil = hasil + (input[j] * 0.6) * (1-hasil)
+        } else if(j = 4){
+            hasil = hasil + (input[j] * 0.0) * (1-hasil)
+        } else if(j = 5){
+            hasi = hasil + (input[j] * 1) * (1-hasil)
+        } else if(j = 6){
+            hasil = hasil + (input[j] * 0.4) * (1-hasil)
+        } else if(j = 7){
+            hasil = hasil + (input[j] * 0.8) * (1-hasil)
+        } else {
+            hasil = hasil + (input[j] * 0.4) * (1-hasil)
+        } 
+    }
+    console.log("Tembus yak");
+    console.log(hasil);
     const embed = newEmbed({
         color:'#dc3147',
         author:{name : "TanSelamat", url: 'https://cdn.discordapp.com/attachments/878248882432262197/899666335200583710/tanSelamat1.png?size=600' },
-        description : `Jawablah pertanyaan di bawah ini dengan 0 = Tidak dan 1 = Iya\n
-        Contoh menjawab cov ans 1 0 1 0 0 dst`,
-        title:`Diagnosa Mandiri`,
+        description : `Berdasarkan Rule 1\n${hasil} sehingga memiliki kemungkinan positif ${hasil*100}%`,
+        title:`Hasil diagnosa mandiri"`
     })
-    for(var i = 0; i < data.length;i++){
-        embed.addField(`Pertanyaan ${data[i].no}`,`${data[i].soal}`,true);
-        message.channel.send(embed);
-        await timer(3000);
-    }      
-    
+    message.author.send(embed);
 }
+
 async function country(message,args){
 
     if(args.length<1) return await message.channel.send("give some country name"); 
