@@ -151,6 +151,9 @@ async function diagnose(message, args){
                     } else if (message.content.toUpperCase() == 'TIDAK' || message.content.toUpperCase() == 'T') {
                         message.channel.send(`Sebelumnya Anda menjawab tidak`);
                         input.push(Number(0.0));
+                    } else if (message.content.toUpperCase() == 'MEMILIH TIDAK MENGATAKAN' || message.content.toUpperCase() == 'MTM') {
+                        message.channel.send(`Sebelumnya Anda tidak ingin mengatakan`);
+                        input.push(Number(0.0));
                     } else {
                         message.channel.send(`Masukan yang diberikan salah, mohon baca keterangan menjawab`);
                         stop = 1;

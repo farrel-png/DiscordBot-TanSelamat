@@ -18,25 +18,51 @@
       },
       {
          "no":5,
-         "soal":"Apakah Anda memiliki riwayat asma, pneumonia dan gagal napas?"
+         "soal":"Apakah Anda memiliki riwayat kanker, asma, pneumonia dan gagal napas?"
       },
       {
          "no":6,
-         "soal":"Apakah Anda mengalami gejala demam?"
+         "soal":"Apakah Anda mengalami gejala demam dan menggigil?"
       },
       {
          "no":7,
-         "soal":"Apakah Anda mengalami gejala batuk?"
+         "soal":"Apakah Anda mengalami gejala batuk dan sakit tenggorokan?"
       },
       {
          "no":8,
-         "soal":"Apakah Anda mengalami sakit kepala?"
+         "soal":"Apakah Anda sedang mengalami sesak nafas?"
       },
       {
          "no":9,
-         "soal":"Apakah Anda sedang mengalami sesak nafas?"
+         "soal":"Apakah Anda mengalami sakit kepala?"
+      },
+      {
+         "no":10,
+         "soal":"Apakah Anda memiliki gejala anosmia?"
+      },
+      {
+         "no":11,
+         "soal":"Apakah Anda merasa kelelahan (lemas)?"
+      },
+      {
+         "no":12,
+         "soal":"Apakah Anda merasa sakit dada?"
+      },
+      {
+         "no":13,
+         "soal":"Apakah Anda mengalami kehilangan keseimbangan?"
+      },
+      {
+         "no":14,
+         "soal":"Apakah Anda perokok aktif?"
+      },
+      {
+         "no":15,
+         "soal":"Apakah Anda memiliki riwayat hipertensi?"
+      },
+      {
+         "no":16,
+         "soal":"Apakah Anda mengalami diare?"
       }
-      
-      
    ]
 }
