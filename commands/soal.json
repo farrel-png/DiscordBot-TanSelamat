@@ -2,67 +2,67 @@
    "pertanyaan":[
       {
          "no":1,
-         "soal":"Sejak 14 hari yang lalu, apakah Anda memiliki kontak erat dengan kasus konfirmasi COVID-19?"
-      },
-      {
-         "no":2,
-         "soal":"Sejak 14 hari yang lalu, apakah Anda keluar rumah dengan tidak mengenakan masker?"
-      },
-      {
-         "no":3,
          "soal":"Apakah Anda memiliki  riwayat penyakit kardiovaskular, seperti stroke dan penyakit jantung?"
       },
       {
-         "no":4,
+         "no":2,
          "soal":"Apakah Anda memiliki  riwayat penyakit diabetes?"
       },
       {
-         "no":5,
+         "no":3,
          "soal":"Apakah Anda memiliki riwayat kanker, asma, pneumonia dan gagal napas?"
       },
       {
-         "no":6,
+         "no":4,
          "soal":"Apakah Anda mengalami gejala demam dan menggigil?"
       },
       {
-         "no":7,
+         "no":5,
          "soal":"Apakah Anda mengalami gejala batuk dan sakit tenggorokan?"
       },
       {
-         "no":8,
-         "soal":"Apakah Anda sedang mengalami sesak nafas?"
+         "no":6,
+         "soal":"Apakah Anda sedang mengalami sesak napas?"
       },
       {
-         "no":9,
+         "no":7,
          "soal":"Apakah Anda mengalami sakit kepala?"
       },
       {
-         "no":10,
+         "no":8,
          "soal":"Apakah Anda memiliki gejala anosmia?"
       },
       {
-         "no":11,
-         "soal":"Apakah Anda merasa kelelahan (lemas)?"
-      },
-      {
-         "no":12,
+         "no":9,
          "soal":"Apakah Anda merasa sakit dada?"
       },
       {
+         "no":10,
+         "soal": "Apakah Anda merasa kelelahan (lemas)?"
+      },
+      {
+         "no":11,
+         "soal": "Apakah Anda mengalami diare?"
+      },
+      {
+         "no":12,
+         "soal": "Apakah Anda perokok aktif?"
+      },
+      {
          "no":13,
-         "soal":"Apakah Anda mengalami kehilangan keseimbangan?"
+         "soal": "Apakah Anda memiliki riwayat hipertensi?"
       },
       {
          "no":14,
-         "soal":"Apakah Anda perokok aktif?"
+         "soal": "Apakah Anda mengalami kehilangan keseimbangan?"
       },
       {
          "no":15,
-         "soal":"Apakah Anda memiliki riwayat hipertensi?"
+         "soal": "Sejak 14 hari yang lalu, apakah Anda memiliki kontak erat dengan kasus konfirmasi COVID-19?"
       },
       {
          "no":16,
-         "soal":"Apakah Anda mengalami diare?"
+         "soal": "Sejak 14 hari yang lalu, apakah Anda keluar rumah dengan tidak mengenakan masker?"
       }
    ]
 }

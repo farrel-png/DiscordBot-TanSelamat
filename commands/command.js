@@ -138,16 +138,16 @@ async function diagnose(message, args){
                         input.push(Number(1.0));
                     } else if (message.content.toUpperCase() == 'HAMPIR PASTI' || message.content.toUpperCase() == 'HP') {
                         message.channel.send(`Sebelumnya Anda menjawab hampir pasti`);
-                        input.push(Number(0.8));
+                        input.push(Number(0.75));
                     } else if (message.content.toUpperCase() == 'KEMUNGKINAN BESAR' || message.content.toUpperCase() == 'KB') {
                         message.channel.send(`Sebelumnya Anda menjawab kemungkinan besar`);
-                        input.push(Number(0.6));
+                        input.push(Number(0.5));
                     } else if (message.content.toUpperCase() == 'MUNGKIN' || message.content.toUpperCase() == 'M') {
                         message.channel.send(`Sebelumnya Anda menjawab mungkin`);
-                        input.push(Number(0.4));
+                        input.push(Number(0.25));
                     } else if (message.content.toUpperCase() == 'TIDAK TAHU' || message.content.toUpperCase() == 'TT') {
                         message.channel.send(`Sebelumnya Anda menjawab tidak tahu`);
-                        input.push(Number(0.2));
+                        input.push(Number(0.0));
                     } else if (message.content.toUpperCase() == 'TIDAK' || message.content.toUpperCase() == 'T') {
                         message.channel.send(`Sebelumnya Anda menjawab tidak`);
                         input.push(Number(0.0));
@@ -182,43 +182,88 @@ function rule1(message, input){
     var hasil = 0.0;
     for(var j = 0; j<input.length; j++){
         if (j == 0){
-            hasil = input[j] * 0.8;
+            hasil = input[j] * 0.4;
             console.log("masuk j = 0");
+            console.log(hasil);
             continue;
         } else if(j == 1){
             hasil = hasil + (input[j] * 0.4) * (1-hasil);
             console.log("masuk j = 1");
+            console.log(hasil);
             continue;
         } else if(j == 2){
-            hasil = hasil + (input[j] * 0.4) * (1-hasil);
+            hasil = hasil + (input[j] * 0.6) * (1-hasil);
             console.log("masuk j = 2");
+            console.log(hasil);
             continue;
         } else if(j == 3){
-            hasil = hasil + (input[j] * 0.6) * (1-hasil);
+            hasil = hasil + (input[j] * 0.4) * (1-hasil);
             console.log("masuk j = 3");
+            console.log(hasil);
             continue;
         } else if(j == 4){
-            hasil = hasil + (input[j] * 0.0) * (1-hasil);
+            hasil = hasil + (input[j] * 0.4) * (1-hasil);
             console.log("masuk j = 4");
+            console.log(hasil);
             continue;
         } else if(j == 5){
             hasi = hasil + (input[j] * 1) * (1-hasil);
             console.log("masuk j = 5");
+            console.log(hasil);
             continue;
         } else if(j == 6){
             hasil = hasil + (input[j] * 0.4) * (1-hasil);
             console.log("masuk j = 6");
+            console.log(hasil);
             continue;
         } else if(j == 7){
-            hasil = hasil + (input[j] * 0.8) * (1-hasil);
+            hasil = hasil + (input[j] * 1) * (1-hasil);
             console.log("masuk j = 7");
+            console.log(hasil);
+            continue;
+        } else if(j == 8){
+            hasil = hasil + (input[j] * 0.6) * (1-hasil);
+            console.log("masuk j = 8");
+            console.log(hasil);
+            continue;
+        } else if(j == 9){
+            hasil = hasil + (input[j] * 0.6) * (1-hasil);
+            console.log("masuk j = 9");
+            console.log(hasil);
+            continue;
+        } else if(j == 10){
+            hasil = hasil + (input[j] * 0.2) * (1-hasil);
+            console.log("masuk j = 10");
+            console.log(hasil);
+            continue;
+        } else if(j == 11){
+            hasil = hasil + (input[j] * 0.4) * (1-hasil);
+            console.log("masuk j = 11");
+            console.log(hasil);
+            continue;
+        } else if(j == 12){
+            hasil = hasil + (input[j] * 0.4) * (1-hasil);
+            console.log("masuk j = 12");
+            console.log(hasil);
+            continue;
+        } else if(j == 13){
+            hasil = hasil + (input[j] * 0.2) * (1-hasil);
+            console.log("masuk j = 13");
+            console.log(hasil);
+            continue;
+        } else if(j == 14){
+            hasil = hasil + (input[j] * 1) * (1-hasil);
+            console.log("masuk j = 14");
+            console.log(hasil);
             continue;
         } else {
-            hasil = hasil + (input[j] * 0.4) * (1-hasil);
-            console.log("masuk j = 8");
+            hasil = hasil + (input[j] * 0.8) * (1-hasil);
+            console.log("masuk j = 15");
+            console.log(hasil);
             break;
         } 
     }
+    hasil.toFixed(3);
     console.log("Tembus yak");
     console.log(hasil);
     const embed = newEmbed({
