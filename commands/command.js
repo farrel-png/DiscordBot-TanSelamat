@@ -128,7 +128,7 @@ async function diagnose(message, args){
             message.author.send(embed).then(() => {
                 message.channel.awaitMessages(filter, {
                     max: 1,
-                    time: 10000,
+                    time: 5000,
                     errors: ['time']
                   })
                   .then(message => {
@@ -167,7 +167,7 @@ async function diagnose(message, args){
         }
         
 
-        await timer(11000);
+        await timer(6000);
     }
     
     collector.stop();
@@ -182,81 +182,97 @@ function rule1(message, input){
     var hasil = 0.0;
     for(var j = 0; j<input.length; j++){
         if (j == 0){
+            console.log(hasil)
             hasil = input[j] * 0.4;
             console.log("masuk j = 0");
             console.log(hasil);
             continue;
         } else if(j == 1){
+            console.log(hasil)
             hasil = hasil + (input[j] * 0.4) * (1-hasil);
             console.log("masuk j = 1");
             console.log(hasil);
             continue;
         } else if(j == 2){
+            console.log(hasil)
             hasil = hasil + (input[j] * 0.6) * (1-hasil);
             console.log("masuk j = 2");
             console.log(hasil);
             continue;
         } else if(j == 3){
+            console.log(hasil)
             hasil = hasil + (input[j] * 0.4) * (1-hasil);
             console.log("masuk j = 3");
             console.log(hasil);
             continue;
         } else if(j == 4){
+            console.log(hasil)
             hasil = hasil + (input[j] * 0.4) * (1-hasil);
             console.log("masuk j = 4");
             console.log(hasil);
             continue;
         } else if(j == 5){
-            hasi = hasil + (input[j] * 1) * (1-hasil);
+            console.log(hasil)
+            hasil = hasil + (input[j] * 1.0) * (1-hasil);
             console.log("masuk j = 5");
             console.log(hasil);
             continue;
         } else if(j == 6){
+            console.log(hasil)
             hasil = hasil + (input[j] * 0.4) * (1-hasil);
             console.log("masuk j = 6");
             console.log(hasil);
             continue;
         } else if(j == 7){
-            hasil = hasil + (input[j] * 1) * (1-hasil);
+            console.log(hasil)
+            hasil = hasil + (input[j] * 1.0) * (1-hasil);
             console.log("masuk j = 7");
             console.log(hasil);
             continue;
         } else if(j == 8){
+            console.log(hasil)
             hasil = hasil + (input[j] * 0.6) * (1-hasil);
             console.log("masuk j = 8");
             console.log(hasil);
             continue;
         } else if(j == 9){
-            hasil = hasil + (input[j] * 0.6) * (1-hasil);
+            console.log(hasil)
+            hasil = hasil + (input[j] * 0.4) * (1-hasil);
             console.log("masuk j = 9");
             console.log(hasil);
             continue;
         } else if(j == 10){
+            console.log(hasil)
             hasil = hasil + (input[j] * 0.2) * (1-hasil);
             console.log("masuk j = 10");
             console.log(hasil);
             continue;
         } else if(j == 11){
+            console.log(hasil)
             hasil = hasil + (input[j] * 0.4) * (1-hasil);
             console.log("masuk j = 11");
             console.log(hasil);
             continue;
         } else if(j == 12){
+            console.log(hasil)
             hasil = hasil + (input[j] * 0.4) * (1-hasil);
             console.log("masuk j = 12");
             console.log(hasil);
             continue;
         } else if(j == 13){
+            console.log(hasil)
             hasil = hasil + (input[j] * 0.2) * (1-hasil);
             console.log("masuk j = 13");
             console.log(hasil);
             continue;
         } else if(j == 14){
-            hasil = hasil + (input[j] * 1) * (1-hasil);
+            console.log(hasil)
+            hasil = hasil + (input[j] * 1.0) * (1-hasil);
             console.log("masuk j = 14");
             console.log(hasil);
             continue;
         } else {
+            console.log(hasil)
             hasil = hasil + (input[j] * 0.8) * (1-hasil);
             console.log("masuk j = 15");
             console.log(hasil);
