@@ -129,7 +129,7 @@ async function diagnose(message, args){
             message.author.send(embed).then(() => {
                 message.channel.awaitMessages(filter, {
                     max: 1,
-                    time: 5000,
+                    time: 10000,
                     errors: ['time']
                   })
                   .then(message => {
@@ -168,7 +168,7 @@ async function diagnose(message, args){
         }
         
 
-        await timer(6000);
+        await timer(11000);
     }
     
     collector.stop();
