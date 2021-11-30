@@ -9,6 +9,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "node":"14.15.0",
     "canvas": "^2.8.0",
     "chart.js": "^3.5.1",
     "chartjs-node-canvas": "^4.1.3",
