@@ -12,7 +12,6 @@ client.once('ready',()=>{
 const prefix = "cov";
 
 client.on('message',message=>{
-  
   const parsed = parser.parse(message, prefix,{allowSpaceBeforeCommand:true});
   if(parsed.success){
     try{
