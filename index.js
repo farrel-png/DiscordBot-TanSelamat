@@ -15,8 +15,13 @@ client.on('message',message=>{
   
   const parsed = parser.parse(message, prefix,{allowSpaceBeforeCommand:true});
   if(parsed.success){
+    try{
       com[parsed.command](message,parsed.arguments);
       console.log(parsed.arguments);
+    } catch(err){
+      message.author.send("Perintah yang anda masukan salah");
+    }
+    
   }
 });
 

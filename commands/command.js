@@ -22,17 +22,16 @@ const help =async (message,arguments)=>{
     const embed = newEmbed({
         color:'#dc3147',
         author:{name : "TanSelamat", url: 'https://cdn.discordapp.com/attachments/878248882432262197/899666335200583710/tanSelamat1.png?size=600' },
-        description : "this is the help section",
-        title:"Perintah yang disediakan TanSelamat",
+        description : "Perintah yang tersedia",
+        title:"ChatBot TanSelamat",
         fields:[
-            {name :'Help', value:'`cov help`\n Memperlihatkan Perintah yang tersedia',inline : true},
+            {name :'Help', value:'`cov help`\n Memperlihatkan perintah yang tersedia',inline : true},
             {name :'All', value:'`cov all`\n Memperlihatkan status Covid secara keseluruhan',inline : true},
             {name :'Country', value:'`cov country {country}`\n Memperlihatkan status covid berdasarkan negara',inline : true},
             {name :'rankings', value:'`cov ranks`\n Memperlihatkan urutan negara dengann status covid tertinggi',inline : true},
             {name :'Country Compare', value:'`cov compare {country} {country}`\n Membandingkan status covid pada 2 negara',inline : true},
-            {name: 'Reminnder', value: '`cov remind {time} {reason}`\n Give a reminder with a reason', inline: true},
-            {name: 'Diagnose', value: '`cov diagnose`\n Memberikan pertanyaan pada obrolan pribadi', inline: true}
-        ], 
+            {name: 'Diagnose', value: '`cov diagnose`\n Melakukan diagnosis mandiri pada obrolan pribadi', inline: true}
+        ],
     })
     await message.channel.send(embed);
 }
@@ -47,8 +46,8 @@ async function all(message){
     const embed = newEmbed({
         color:'#dc3147',
         author:{name : "TanSelamat", url: 'https://cdn.discordapp.com/attachments/878248882432262197/899666335200583710/tanSelamat1.png?size=600' },
-        description : "this is the help section",
-        title:"Global data",
+        description : "Berdasarkan Disease.sh - Open Disease Data API",
+        title:"Data Covid19 di Dunia",
         fields:[
             {name :'cases', value:`${data.cases}\n${(data.todayCases>=0?'+':'-')+String(Math.abs(data.todayCases))}`,inline : true},
             {name :'deaths', value:`${data.deaths}\n${(data.todayDeaths>=0?'+':'-')+String(Math.abs(data.todayDeaths))}`,inline : true},
@@ -64,36 +63,13 @@ async function all(message){
             {name :'Test Rate', value:`${(data.testsPerOneMillion/10000).toFixed(3)}%`,inline : true},
             {name :'infected countries', value:data.affectedCountries ,inline : true},
         ], 
+        url:'https://disease.sh'
     })
     await message.channel.send(embed);
 }
 
-async function remind(message, args){
-    let timeuser = args[0];
-    let reason = args.slice(1).join("")
-    if(!timeuser) return await message.channel.send("Give time and whats the reason for the reminder");
-    if(!reason) return await message.channel.send("Remember to give a reason for reminder");
-}
-// {name: 'Pertanyaan 2', value: "Apakah Anda memiliki riwayat mengidap penyakit di bawah ini?\n\na. Diabetes\n  b. Penyakit Jantung\n  c. Hipertensi\n  d. Keganasan\n  e. Gangguan Imunologi\n  f. Penyakit Ginjal Kronis\n  g. PPOK\n  H. Asma", inline: true},
-//             {name: 'Pertanyaan 3', value: 'Sejak 14 hari yang lalu, apakah Anda memiliki kontak erat dengan kasus suspek COVID-19?', inline: true},
-//             {name: 'Pertanyaan 4', value: 'Sejak 14 hari yang lalu, apakah Anda memiliki kontak erat dengan kasus konfirmasi COVID-19?', inline: true},
-//             {name: 'Pertanyaan 5', value: 'Sejak 14 hari yang lalu, apakah Anda pernah mengunjungi pasar hewan?', inline: true},
-//             {name: 'Pertanyaan 6', value: 'Sejak 14 hari yang lalu, apakah Anda pernah mengunjungi tempat publik?', inline: true},
-//             {name: 'Pertanyaan 7', value: 'Sejak 14 hari yang lalu, apakah Anda pernah mengunjungi fasilitas kesehatan?', inline: true},
-//             {name: 'Pertanyaan 8', value: 'Apakah Anda termasuk kelompok Infeksi Saluran Pernapasan Berat (ISPB) sehingga membutuhkan perawatan di Rumah Sakit?', inline: true},
-//             {name: 'Pertanyaan 9', value: 'Apakah Anda mengalami gejala demam?', inline: true},
-//             {name: 'Pertanyaan 10', value: 'Apakah Anda mengalami gejala batuk?', inline: true},
-//             {name: 'Pertanyaan 11', value: 'Apakah Anda mengalami gejala pilek?', inline: true},
-//             {name: 'Pertanyaan 12', value: 'Apakah Anda sedang mengalami sakit tenggorokan?', inline: true},
-//             {name: 'Pertanyaan 13', value: 'Apakah Anda sedang mengalami sesak nafas?', inline: true},
-//             {name: 'Pertanyaan 14', value: 'Apakah Anda merasa menggigil?', inline: true},
-//             {name: 'Pertanyaan 15', value: 'Apakah Anda mengalami sakit kepala?', inline: true},
-//             {name: 'Pertanyaan 16', value: 'Apakah Anda merasa lemah dan lesu?', inline: true},
-//             {name: 'Pertanyaan 17', value: 'Apakah Anda merasa nyeri otot?', inline: true},
-//             {name: 'Pertanyaan 18', value: 'Apakah Anda sedang mengalami gejala mual/muntah?', inline: true},
-//             {name: 'Pertanyaan 19', value: 'Apakah Anda merasakan nyeri di abdomen atau perut?', inline: true},
-//             {name: 'Pertanyaan 20', value: 'Apakah Anda sedang mengalami diare?', inline: true},
 
+//Diagnose
 async function diagnose(message, args){
     const data = abis.pertanyaan;
     var input=[];
@@ -101,6 +77,31 @@ async function diagnose(message, args){
     const timer = ms => new Promise(res => setTimeout(res, ms))
     const filter =(m) => m.author.id === message.author.id;
     const collector = new Discord.MessageCollector(message.channel, filter);
+    const embed = newEmbed({
+        color:'#dc3147',
+        author:{name : "TanSelamat", url: 'https://cdn.discordapp.com/attachments/878248882432262197/899666335200583710/tanSelamat1.png?size=600' },
+        description : `Anda diberikan **waktu 30 detik** untuk bersiap sebelum menjawab pertanyaan dan membaca deskripsi ini
+        \nDi setiap pertanyaan anda diberikan **waktu 10 detik untuk menjawab,** anda bisa menjawab dengan **"tidak"**, **"mungkin"**, 
+        **"kemungkinan besar"**, **"hampir pasti"**
+         dan **"iya"**
+        \n Anda juga diperkenankan untuk menjawab dengan **"tidak tahu"**
+        \nJika anda memasukan input yang tidak sesuai, maka diagnosa mandiri akan berhenti dan akan tetap memberikan hasil berdasarkan pertanyaan yang sudah Anda
+        jawab. 
+        \nAnda disarankan untuk mengulangi kembali diagnosa mandiri agar diagnosa mandiri berjalan sepenuhnya`,
+        title:`Diagnosa Mandiri`
+    })
+
+    message.author.send(embed);
+    await timer(35000);
+
+    const start = newEmbed({
+        color:'#dc3147',
+        author:{name : "TanSelamat", url: 'https://cdn.discordapp.com/attachments/878248882432262197/899666335200583710/tanSelamat1.png?size=600' },
+        title:"Diagnosa Mandiri akan dimulai"
+    })
+    message.author.send(start);
+    await timer(3000);
+
     console.log(data)
 
     collector.on("collect", (msg)=> {
@@ -174,7 +175,7 @@ async function diagnose(message, args){
     console.log(input);
     rule1(message, input);
 }
-
+//Certainty Factor
 function rule1(message, input){
     console.log('masuk kesini');
     console.log(input[0]);
@@ -279,18 +280,49 @@ function rule1(message, input){
             break;
         } 
     }
-    hasil.toFixed(3);
+    hasil = hasil*100;
+    hasil = hasil.toFixed(2);
+
+    //Hasil Certainty Factor
+    if(hasil<46){
+        const embed = newEmbed({
+            color:'#dc3147',
+            author:{name : "TanSelamat", url: 'https://cdn.discordapp.com/attachments/878248882432262197/899666335200583710/tanSelamat1.png?size=600' },
+            description : `Anda **Negatif covid19** dengan persentase ${hasil}%. Tetaplah menjaga kesehatan Anda,
+            rajinlah berolahraga, minum air putih 8 gelas per hari dan minum vitamin \n**Hasil yang diberikan bukan lah hasil diagnosa asli,
+            disini hanya menghitung potensi atau kemungkinan dari hasil diagnosa anda\nTetap jaga kesehatan Salam TanSelamat**`,
+            title:`Hasil diagnosa mandiri"`
+        })
+        message.author.send(embed);
+    } else if(hasil<86){
+        const embed = newEmbed({
+            color:'#dc3147',
+            author:{name : "TanSelamat", url: 'https://cdn.discordapp.com/attachments/878248882432262197/899666335200583710/tanSelamat1.png?size=600' },
+            description : `Anda **Berkemungkinan Besar COVID19** dengan persentase ${hasil}%. Tetaplah menjaga kesehatan Anda, rajin berolahraga
+            dan juga meminum vitamin.\nJika gejala masih berlanjut sampai seminggu kedapan segera datang ke rumah sakit terdekat.
+             \n**Hasil yang diberikan bukan lah hasil diagnosa asli, disini hanya menghitung potensi atau kemungkinan dari hasil diagnosa anda
+             \nTetap jaga kesehatan Salam TanSelamat**`,
+            title:`Hasil diagnosa mandiri"`
+        })
+        message.author.send(embed);
+    }else{
+        const embed = newEmbed({
+            color:'#dc3147',
+            author:{name : "TanSelamat", url: 'https://cdn.discordapp.com/attachments/878248882432262197/899666335200583710/tanSelamat1.png?size=600' },
+            description : `Anda **POSITIF COVID19** dengan persentase ${hasil}%. Segera melakukan pengecekan lebih lanjut menggunakan metode PCR
+             dan datang kerumah sakit terdekat jika gejala masih berlanjut.
+             \n**Hasil yang diberikan bukan lah hasil diagnosa asli, disini hanya menghitung potensi atau kemungkinan dari hasil diagnosa anda
+             \nTetap jaga kesehatan Salam TanSelamat**`,
+            title:`Hasil diagnosa mandiri"`
+        })
+        message.author.send(embed);
+    }
     console.log("Tembus yak");
     console.log(hasil);
-    const embed = newEmbed({
-        color:'#dc3147',
-        author:{name : "TanSelamat", url: 'https://cdn.discordapp.com/attachments/878248882432262197/899666335200583710/tanSelamat1.png?size=600' },
-        description : `Berdasarkan Rule 1\n${hasil} sehingga memiliki kemungkinan positif ${hasil*100}%`,
-        title:`Hasil diagnosa mandiri"`
-    })
-    message.author.send(embed);
 }
 
+
+//Country
 async function country(message,args){
 
     if(args.length<1) return await message.channel.send("give some country name"); 
@@ -321,39 +353,14 @@ async function country(message,args){
             {name :'Recovery Rate', value:`${(data.recovered/data.active*100).toFixed(3)}%`,inline : true},
             {name :'Test Rate', value:`${(data.testsPerOneMillion/10000).toFixed(3)}%`,inline : true},
         ],
+        url:'https://disease.sh'
          
     })
     await message.channel.send(embed);
 }
 
-// async function state(message,args){
-//     if(args.length<1) return await message.channel.send("give a state name");
-//     //same as country but the data will be of a state
-//     const data = await api.states({state : args.join(' ') });
-//     const prevdata = await api.yesterday.states({state : args.join(' ')});
-//     data.todayActive = data.active - prevdata.active;
-//     data.todayrec = data.recovered - prevdata.recovered;
-//     data.totalcritical = data.critical - prevdata.critical;
-//     data.todayTests = data.tests - prevdata.tests;
-//     //everything is same except this time the data is of a country
-//     const embed = newEmbed({
-//         color:'#dc3147',
-//         author:{name : "TanSelamat", url: 'https://cdn.discordapp.com/attachments/878248882432262197/899666335200583710/tanSelamat1.png?size=600' },
-//         description : "this is the help section",
-//         title:"Global data",
-//         fields:[
-//             {name :'cases', value:`${data.cases}\n${(data.todayCases>=0?'+':'-')+String(Math.abs(data.todayCases))}`,inline : true},
-//             {name :'deaths', value:`${data.deaths}\n${(data.todayDeaths>=0?'+':'-')+String(Math.abs(data.todayDeaths))}`,inline : true},
-//             {name :'Active', value:`${data.active}\n${(data.todayActive>=0?'+':'-')+String(Math.abs(data.todayActive))}`,inline : true},
-//             {name :'Tests', value:`${data.tests}\n${(data.todayTests>=0?'+':'-')+String(Math.abs(data.todayTests))}`,inline : true},
-//             {name :'Test Rate', value:`${(data.testsPerOneMillion/10000).toFixed(3)}%`,inline : true},
-//         ],
-//          
-//     })
-//     await message.channel.send(embed);
 
-// }
-
+//ranks
 async function ranks(message,args){
     const data = await api.all();
     const countries = (await api.countries({sort:'cases'})).splice(0,10);
@@ -367,9 +374,10 @@ async function ranks(message,args){
     const embed =newEmbed({
         color:'#dc3147',
         author:{name : "TanSelamat", url: 'https://cdn.discordapp.com/attachments/878248882432262197/899666335200583710/tanSelamat1.png?size=600' },
-        description : "this is the help section",
-        title:"Top 15 countries sorted by cases",
+        description : "Berdasarkan novelcovid",
+        title:"Urutan 15 negara dengan kasus terbanyak",
         fields:countrylist,
+        url:'https://disease.sh'
     })
     await message.channel.send(embed);
 }
@@ -391,7 +399,7 @@ async function compare(message,args){
   const embed = newEmbed({
     color:'#dc3147',
     author:{name : "TanSelamat", url: 'https://cdn.discordapp.com/attachments/878248882432262197/899666335200583710/tanSelamat1.png?size=600' },
-    title: `Comparison between ${data[0].country} & ${data[1].country}`,
+    title: `Perbandingan antara ${data[0].country} & ${data[1].country}`,
     fields: [
       { name: 'Cases', value: `**${data[0].country}**: ${(data[0].cases)} (${(data[0].todayCases >= 0 ? "+":"-")+String(Math.abs(data[0].todayCases))})\n**${data[1].country}**: ${(data[1].cases)} (${(data[1].todayCases >= 0 ? "+":"-")+String(Math.abs(data[1].todayCases))})`, inline: true },
       { name: 'Deaths', value: `**${data[0].country}**: ${(data[0].deaths)} (${(data[0].todayDeaths >= 0 ? "+":"-")+String(Math.abs(data[0].todayDeaths))})\n**${data[1].country}**: ${(data[1].deaths)} (${(data[1].todayDeaths >= 0 ? "+":"-")+String(Math.abs(data[1].todayDeaths))})`, inline: true },
@@ -406,65 +414,11 @@ async function compare(message,args){
       { name: 'Recovery Rate', value: `**${data[0].country}**: ${(data[0].recovered/data[0].cases*100).toFixed(4)} %\n**${data[1].country}**: ${(data[1].recovered/data[1].cases*100).toFixed(4)} %`, inline: true },
       { name: 'Test Rate', value: `**${data[0].country}**: ${(data[0].testsPerOneMillion/10000).toFixed(4)} %\n**${data[1].country}**: ${(data[1].testsPerOneMillion/10000).toFixed(4)} %`, inline: true },
     ],
+    url:'https://disease.sh'
   })
   await message.channel.send(embed)
 
     
-}
-
-//CHARTS <3
-const config = ChartJS=>{
-    ChartJS.defaults.global.defaultFontColor='#fff'
-    ChartJS.defaults.global.defaultFontStyle='bold'
-    ChartJS.defaults.global.defaultFontFamily='Helvetica Neue, Helvetica, Arial, sans-serif'
-    ChartJS.plugins.register({
-        beforInit:function(chart){
-            chart.legend.afterFit = function() {this.height +=35}
-        },
-        beforeDraw:(chart)=>{
-            const ctx = chart.ctx;
-            ctx.save();
-            ctx.fillStyle = '#2f3136';
-            ctx.fillRect(0,0,chart.width,chart.height);
-            ctx.restore();
-        }
-    })
-}
-
-async function overview(message,args){
-    if(args.length<1) return await message.channel.send("specify a country name");
-    const pieData = ['global','all'].includes(args[0].toLowerCase())? await api.all() : await api.countries({country:args[0]});
-    const buffer = await lineRenderer.renderToBuffer({
-        type:'pie',
-        data: {
-            labels:['Active','Recovered','Deaths'],
-            datasets: [{
-                data: [pieData.active,pieData.recovered,pieData.deaths],
-                backgroundColor: ['#fecb89', '#a7d129', '#e14594'],
-                borderWidth:1,
-                borderColor: ['#fecb89', '#a7d129', '#e14594']
-            }],
-        },
-        options : {
-            legend: {
-                display: true,
-                labels:{
-                    padding: 40,
-                    fontSize: 30,
-                }
-            }
-        } 
-    })
-
-    const embed = newEmbed({
-        color: '#303136',
-        author:{name : "Covid stats", url: 'https://cdn.discordapp.com/icons/707227171835609108/f308f34a45ac7644506fb628215a3793.png?size=128' },
-        title: `${pieData.country||'Global'} Overview`,
-        files: [new Discord.MessageAttachment(buffer,'graph.png')],
-        image: 'attachment://graph.png',
-    })
-
-    await message.channel.send(embed);
 }
 
 module.exports = {
@@ -478,8 +432,6 @@ module.exports = {
     r:ranks,
     compare,
     comp : compare,
-    remind,
-    r: remind,
     diagnose,
     d: diagnose
 }
